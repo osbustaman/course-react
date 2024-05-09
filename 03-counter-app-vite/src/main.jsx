@@ -1,15 +1,15 @@
-import React from "react";
-import ReactDOM  from "react-dom/client";
-//import { HelloWorldApp } from "./HelloWorldApp";
-//import { FisrApp } from "./FisrApp";
+import React from 'react'
+import ReactDom from 'react-dom/client'
+
+import { App } from './HelloWorldApp.jsx'
+import { FirstApp } from './FirstApp.jsx'
+import { CounterApp } from './CounterApp.jsx'
+
+import './style.css'
 
 
-import CounterApp from "./CounterApp";
-
-import './styles.css';
-
-ReactDOM.createRoot( document.getElementById('root') ).render(
-    <React.StrictMode>
-        <CounterApp value={ 1 } />
-    </React.StrictMode>
-);
+ReactDom.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <CounterApp value={0}/>
+  </React.StrictMode>
+)
