@@ -1,10 +1,9 @@
 import { useState } from "react";
 
-export const LoginAdmin = () => {
+export const AdminLogin = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const host_url = import.meta.env.VITE_API_URL;
   
 
   const handleEmailChange = (event) => {
@@ -18,33 +17,8 @@ export const LoginAdmin = () => {
   const handleSubmit = (event) => {
       event.preventDefault();
 
-      const url = `${host_url}/login-drf`;
-      console.log(email, password, url);
+      console.log(email, password, import.meta.env.VITE_API_URL);
 
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-
-      var raw = JSON.stringify({
-        "username": email,
-        "password": password
-      });
-
-      var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-      };
-
-      fetch(url, requestOptions)
-        .then(response => response.text())
-        .then(result => {
-          
-          const data = JSON.parse(result);
-          console.log(data);
-        
-        })
-        .catch(error => console.log('error', error));
 
   };
 
@@ -70,7 +44,7 @@ export const LoginAdmin = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="row gy-3 gy-md-4 overflow-hidden">
                     <div className="col-12">
-                      <label className="form-label">Username <span className="text-danger">*</span></label>
+                      <label className="form-label">Email <span className="text-danger">*</span></label>
                       <div className="input-group">
                         <span className="input-group-text">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-envelope" viewBox="0 0 16 16">
@@ -78,10 +52,10 @@ export const LoginAdmin = () => {
                           </svg>
                         </span>
                         <input
-                          type="text"
+                          type="email"
                           className="form-control"
-                          name="username"
-                          id="username"
+                          name="email"
+                          id="email"
                           required
                           onChange={handleEmailChange}
                         />
