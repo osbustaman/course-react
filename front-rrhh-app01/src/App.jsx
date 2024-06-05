@@ -1,19 +1,15 @@
-// src/App.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { LoginAdmin } from './components/LoginAdmin';
-import { LoginUser } from './components/LoginUser';
-// import Home from './components/Home'; // Ejemplo de otro componente
+import { Route, Routes } from "react-router-dom"
+import { Login } from "./components/login/Login"
+import { LoginAdmin } from "./components/login/LoginAdmin"
 
-const App = () => {
-  return (
-    <Router>
-      <Switch>
-        <Route path="/login-admin" component={LoginAdmin} />
-        <Route path="/login" component={LoginUser} />
-      </Switch>
-    </Router>
-  );
-};
+export const App = () => {
+    return (
+        <AppProvider>
+            <Routes>
+                <Route path="/login-admin" element={<LoginAdmin />} />
+                <Route path="/login" element={<Login />} />
+            </Routes>
+        </AppProvider>
 
-export default App;
+    )
+}

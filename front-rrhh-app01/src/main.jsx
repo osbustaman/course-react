@@ -1,15 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-//import { LoginAdmin } from './components/LoginAdmin.jsx'
-import App from './App';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+} from "react-router-dom";
+import { router } from './router/router';
 
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={ router } />  
   </React.StrictMode>,
 )
