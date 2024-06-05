@@ -1,51 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getLogin } from "./js/getLogin";
+import { useFechLogin } from "./hooks/useFechLogin";
 
 export const LoginAdmin = () => {
 
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const host_url = import.meta.env.VITE_API_URL;
+  
   
 
   const handleEmailChange = (event) => {
-      setEmail(event.target.value);
+    setUsername(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
-      setPassword(event.target.value);
+    setPassword(event.target.value);
   };
 
   const handleSubmit = (event) => {
-      event.preventDefault();
+    event.preventDefault();
+    const get_login = async () => {
+      const isLogin = await getLogin({ username, password });
+      console.log(isLogin);
 
-      const url = `${host_url}/login-drf`;
-      console.log(email, password, url);
-
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-
-      var raw = JSON.stringify({
-        "username": email,
-        "password": password
-      });
-
-      var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-      };
-
-      fetch(url, requestOptions)
-        .then(response => response.text())
-        .then(result => {
-          
-          const data = JSON.parse(result);
-          console.log(data);
-        
-        })
-        .catch(error => console.log('error', error));
-
+      if (isLogin.status) {
+        console.log('Login success');
+        window.location.href = '/panel-control';
+      }
+    }
+    get_login();
   };
 
   return (
