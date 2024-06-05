@@ -1,8 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import { router } from './router/router';
-
 
 import {
   createBrowserRouter,
@@ -10,11 +8,12 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+import { router } from './router/router';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={ router } />
+    <RouterProvider router={ router } />  
   </React.StrictMode>,
 )
