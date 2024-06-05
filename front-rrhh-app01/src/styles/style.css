@@ -1,0 +1,8 @@
+.login-container {
+    min-height: 100vh;
+    min-width: 600px;
+    display:block;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
