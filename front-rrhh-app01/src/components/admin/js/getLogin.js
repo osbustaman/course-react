@@ -33,7 +33,7 @@ export const getLogin = async ({ username, password }) => {
         } else {
             const data = await response.json();
             return {
-                error: data,
+                error: data.error,
                 status: ok
             };
         }

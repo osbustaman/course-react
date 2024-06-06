@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
-import { getLogin } from "./js/getLogin";
 import { useFechLogin } from "./hooks/useFechLogin";
+import { ModalError } from "./helpers/ModalError";
 
 export const LoginAdmin = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
-  
+  const [title, setTitle] = useState('');
+  const [message, setMessage] = useState('');
 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  
   const handleEmailChange = (event) => {
     setUsername(event.target.value);
   };
@@ -17,18 +21,19 @@ export const LoginAdmin = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const get_login = async () => {
-      const isLogin = await getLogin({ username, password });
-      console.log(isLogin);
+  const { getFechLogin } = useFechLogin({ username, password });
 
-      if (isLogin.status) {
-        window.location.href = '/panel-control';
-      }
+  const fechLogin = async () => {
+    const is_login = await getFechLogin();
+
+    if (!is_login.status) {
+      setTitle("Error")
+      setMessage(is_login.error)
+      handleShow();
     }
-    get_login();
-  };
+
+  }
+  
 
   return (
     <>
@@ -49,7 +54,7 @@ export const LoginAdmin = () => {
 
 
 
-                <form onSubmit={handleSubmit}>
+
                   <div className="row gy-3 gy-md-4 overflow-hidden">
                     <div className="col-12">
                       <label className="form-label">Username <span className="text-danger">*</span></label>
@@ -90,14 +95,12 @@ export const LoginAdmin = () => {
                     </div>
                     <div className="col-12">
                       <div className="d-grid">
-                        <button className="btn btn-primary btn-lg" type="submit">Ingresar</button>
+                        <button className="btn btn-primary btn-lg" onClick={ fechLogin }>Ingresar</button>
                       </div>
                     </div>
 
 
                   </div>
-
-                </form>
 
 
                 <div className="row">
@@ -115,7 +118,8 @@ export const LoginAdmin = () => {
           </div>
         </div>
       </div>
-            
-        </>
+      
+      <ModalError show={ show } handleClose={ handleClose } title={title}  message={message} />
+    </>
   )
 }
