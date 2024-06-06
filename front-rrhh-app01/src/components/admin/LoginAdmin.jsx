@@ -24,7 +24,6 @@ export const LoginAdmin = () => {
       console.log(isLogin);
 
       if (isLogin.status) {
-        console.log('Login success');
         window.location.href = '/panel-control';
       }
     }
