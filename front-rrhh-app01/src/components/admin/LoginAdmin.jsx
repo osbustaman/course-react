@@ -24,6 +24,14 @@ export const LoginAdmin = () => {
   const { getFechLogin } = useFechLogin({ username, password });
 
   const fechLogin = async () => {
+
+    if (!username || !password) {
+      setTitle("Error")
+      setMessage("Los campos no pueden estar vacios")
+      handleShow();
+      return;
+    }
+
     const is_login = await getFechLogin();
 
     if (!is_login.status) {
