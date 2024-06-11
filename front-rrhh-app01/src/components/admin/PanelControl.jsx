@@ -12,6 +12,10 @@ export const PanelControl = ({ children }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('isLogin');
+    window.location.href = '/login-admin';
+
   };
 
   const toggleSidebar = () => {
