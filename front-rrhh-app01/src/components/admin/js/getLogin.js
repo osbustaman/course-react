@@ -26,6 +26,8 @@ export const getLogin = async ({ username, password }) => {
             const data = await response.json();
             localStorage.setItem('token', data.token);
             localStorage.setItem('username', data.user.username);
+            localStorage.setItem('first_name', data.user.first_name);
+            localStorage.setItem('last_name', data.user.last_name);
             return {
                 error: null,
                 status: ok

@@ -3,9 +3,6 @@ import { BreadcrumbExample } from "../helpers/BreadCrumbs";
 export const LIstClients = () => {
     const dict_bread_crumb = [
         {
-            "bread": "admin"
-        },
-        {
             "bread": "lista clientes"
         }
     ]
