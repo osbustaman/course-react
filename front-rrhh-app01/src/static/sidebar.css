@@ -1,24 +1,136 @@
+/* Estilos para el sidebar */
 .sidebar {
-    width: 250px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #f8f9fa; /* Color de fondo */
-    border-right: 1px solid #dee2e6; /* Borde derecho */
-    padding-top: 20px; /* Espaciado superior */
-  }
-  
-  .content {
-    margin-left: 250px; /* Ajuste del contenido para dejar espacio al sidebar */
-    padding: 20px;
-  }
-  
-  .navbar {
-    width: 100%;
-  }
-  
-  .nav-link {
-    padding: 10px 15px;
-  }
-  
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #2B3E54;
+  transition: transform 0.3s ease;
+  border-radius: 0; /* Asegura que no tenga bordes redondos */
+  color: #FFFFFF;
+}
+
+.sidebar-hidden {
+  transform: translateX(-250px);
+}
+
+/* Estilos personalizados para el acordeón */
+.accordion .card {
+  border: none;
+  width: 100%;
+  border-radius: 0; /* Quita los bordes redondos de las cards */
+}
+
+.accordion .card-header {
+  background: #2B3E54;
+  border: none;
+  padding: 0;
+  width: 100%; /* Ocupa el ancho completo */
+  display: flex;
+  align-items: center;
+}
+
+.accordion .card-body {
+  padding: 0;
+}
+
+.accordion .nav-link {
+  padding-left: 1.5rem;
+  width: 100%; /* Ocupa el ancho completo */
+  position: relative; /* Permite posicionar los pseudoelementos */
+}
+
+.custom-toggle {
+  width: 100%; /* Ocupa el ancho completo */
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem; /* Ajusta el tamaño de la letra */
+  background-color: #2B3E54;
+  color: #FFFFFF;
+}
+
+.nav-link .me-2 {
+  margin-right: 0.5rem;
+}
+
+.chevron-icon {
+  font-size: 0.5rem; /* Tamaño más pequeño */
+  transition: color 0.3s ease;
+}
+
+
+.custom-toggle.open {
+  color: #FFFFFF; /* Color gris claro cuando el menú está abierto */
+  background-color: #2F4256;
+  border-top: 1px solid #546270; /* Línea superior */
+  border-right: 5px solid #1BBB9B; /* Línea derecha */
+  border-bottom: 3px solid #2F4256;
+}
+
+.accordion .card-body .nav-link {
+  padding-left: 50px !important; /* Submenús más adentro */
+  font-size: 0.8rem; /* Ajusta el tamaño de la letra del submenú */
+  background-color: #2B3E54;
+  border-right: 5px solid #1BBB9B;
+  color: #FFFFFF;
+}
+
+.accordion .card-body .nav-link::before {
+  content: '';
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px; /* Tamaño del círculo */
+  height: 8px;
+  border-radius: 50%;
+  background-color: #425567; /* Color del círculo */
+}
+
+.accordion .card-body .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 28px; /* Posición de la línea vertical */
+  top: 0;
+  bottom: 0;
+  width: 1px; /* Grosor de la línea */
+  background-color: #425567; /* Color de la línea */
+}
+
+/* Ajustes adicionales */
+.user-profile {
+  display: flex;
+  flex-direction: column; /* Coloca los elementos en columna */
+  align-items: center; /* Centra horizontalmente */
+  padding: 20px;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-bottom: -8px;
+  z-index: 100;
+}
+
+.welcome-text {
+  margin: 0;
+  background-color: #36485D;
+  height: 49px;
+  padding-top: 12px;
+  min-width: 152%;
+  text-align: center;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  margin-bottom: 20px; /* Ajusta el margen inferior */
+  margin-left: 20px;
+}

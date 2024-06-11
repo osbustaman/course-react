@@ -3,6 +3,8 @@ import { PanelControl } from "../components/admin/PanelControl";
 import { DashBoard } from "../components/admin/pages/DashBoard";
 import { Profile } from "../components/admin/pages/Profile";
 import { Settings } from "../components/admin/pages/Settings";
+import { AddClients } from "../components/admin/pages/AddClients";
+import { LIstClients } from "../components/admin/pages/LIstClients";
 
 import { Login } from "../components/clients/Login";
 import  { ProtectedRoute } from "./ProtectedRoute"
@@ -27,6 +29,7 @@ export const router = createBrowserRouter([
             { path: 'dashboard', element: <DashBoard /> },
             { path: 'profile', element: <Profile /> },
             { path: 'settings', element: <Settings /> },
+            { path: 'list-clients', element: <LIstClients /> },
             // Añade más rutas aquí si es necesario
         ]
     },

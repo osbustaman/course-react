@@ -1,0 +1,81 @@
+/* Añade estilos para que el navbar quede arriba y tenga el ancho completo */
+.navbar-top {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    height: 55px;
+    background-color: #EDEDED;
+    border: 1px solid #D9DEE4;
+  }
+
+  .btn-link-nav {
+    color: #73869C;
+  }
+  
+  .content {
+    padding: 0;
+    transition: margin-left 0.3s ease; /* Transición para el efecto deslizante */
+  }
+  
+  .content-expanded {
+    margin-left: 250px; /* Espacio para el sidebar cuando está visible */
+    width: calc(100% - 250px); /* Ajusta el ancho para que no se sobreponga con el sidebar */
+  }
+  
+  .content-collapsed {
+    margin-left: 0; /* Sin espacio para el sidebar cuando está oculto */
+    width: 100%; /* Ancho completo cuando el sidebar está oculto */
+  }
+  
+  /* Otros estilos necesarios */
+  .sidebar {
+    color: aliceblue;
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #2B3E54;
+    transition: transform 0.3s ease; /* Transición para el efecto deslizante */
+  }
+  
+  .sidebar-hidden {
+    transform: translateX(-250px); /* Deslizar hacia la izquierda cuando está oculto */
+  }
+  
+  /* Ajustes específicos para el dropdown */
+  .dropdown-menu {
+    margin-top: 10px !important; /* Ajusta el margen superior */
+    margin-right: 10px !important; /* Ajusta el margen derecho */
+    right: 0 !important; /* Asegura que el menú se alinee a la derecha del contenedor */
+  }
+  
+
+  /* Estilos personalizados para el acordeón */
+.accordion .card {
+    border: none;
+    width: 100%;
+  }
+  
+  .accordion .card-header {
+    background: none;
+    border: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .accordion .card-body {
+    padding: 0;
+  }
+  
+  .accordion .nav-link {
+    padding-left: 1.5rem;
+    width: 100%;
+  }
+  
+  .custom-toggle {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+  }
