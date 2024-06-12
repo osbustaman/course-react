@@ -4,16 +4,30 @@ import { Navbar, Dropdown, Button } from 'react-bootstrap';
 import { Sidebar } from "./Sidebar";
 import { FaCog, FaBars } from 'react-icons/fa';  // Icono para el botón de menú
 
+
+import { useFechLogout } from '../admin/hooks/useFechLogout';
+
+
+
 import '../../static/sidebar.css';
 import '../../static/panelControl.css';
 
 export const PanelControl = ({ children }) => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
+
   const handleLogout = () => {
+
+    const { getFechLogout } = useFechLogout();
+
+    getFechLogout();
+
     localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    localStorage.removeItem('isLogin');
+    localStorage.removeItem('refresh-token');
+    localStorage.removeItem('last_name');
+    localStorage.removeItem('first_name');
+    localStorage.removeItem('mail');
+
     window.location.href = '/login-admin';
 
   };

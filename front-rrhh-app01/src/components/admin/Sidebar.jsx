@@ -2,6 +2,12 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Accordion, Card, useAccordionButton } from 'react-bootstrap';
 import { FaUser, FaCog, FaTachometerAlt, FaChevronDown } from 'react-icons/fa';
 import { useState } from 'react';
+
+import { ModalError } from "../admin/helpers/ModalError";
+
+import { useUserData } from '../admin/hooks/useUserData';
+
+
 import '../../static/sidebar.css';
 
 function CustomToggle({ children, eventKey, onClick, isOpen }) {
@@ -19,6 +25,40 @@ function CustomToggle({ children, eventKey, onClick, isOpen }) {
 
 export const Sidebar = ({ isHidden }) => {
   const [openKeys, setOpenKeys] = useState([]);
+  const [fullName, setFullname] = useState();
+  const [title, setTitle] = useState('');
+  const [message, setMessage] = useState('');
+
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(redirectTo);
+  const handleShow = () => setShow(true);
+
+  const { get_UserData } = useUserData();
+  const redirectTo = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('refresh-token');
+    localStorage.removeItem('last_name');
+    localStorage.removeItem('first_name');
+    localStorage.removeItem('mail');
+
+    window.location.href = '/login-admin';
+  }
+
+
+  const dataUser = async () => {
+    const dataUser = await get_UserData();
+
+    if (dataUser.error) {
+      setTitle("Error")
+      setMessage("Usuario no autorizado!!!")
+      handleShow();
+    }
+
+    setFullname(dataUser.first_name + ' ' + dataUser.last_name);
+  };
+
+  dataUser();
 
   const handleAccordionClick = (eventKey) => {
     setOpenKeys((prevState) =>
@@ -39,7 +79,7 @@ export const Sidebar = ({ isHidden }) => {
           <div className="profile-image">
           <img src="/path/to/logo.png" className="logo" />
           </div>
-          <div className="welcome-text">Hola [nombre usuario]!</div>
+          <div className="welcome-text">Hola { fullName }!</div>
         </div>
         
         
@@ -88,6 +128,9 @@ export const Sidebar = ({ isHidden }) => {
           </Accordion>
         </Nav>
       </Navbar>
+
+      <ModalError show={ show } handleClose={ handleClose } title={title}  message={message} />
+
     </div>
   );
 };

@@ -34,10 +34,12 @@ export const LoginAdmin = () => {
 
     const is_login = await getFechLogin();
 
-    if (!is_login.status) {
+    if (!is_login) {
       setTitle("Error")
       setMessage(is_login.error)
       handleShow();
+    }else{
+      window.location.href = '/panel-control';
     }
 
   }

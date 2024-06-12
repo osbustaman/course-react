@@ -1,31 +1,44 @@
 
-export const getLogout = (id) => {
+export const getLogout = async (id) => {
 
     const host_url = import.meta.env.VITE_API_URL;
     
         const url = `${host_url}/logout-drf`;
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", `Token ${id}`);
-    
+        myHeaders.append("token", `${localStorage.getItem('refresh_token')}`);
+
+        const raw = JSON.stringify({
+            "id": id
+        });
+
         const requestOptions = {
             method: 'POST',
             headers: myHeaders,
-            redirect: 'follow'
+            redirect: 'follow',
+            body: raw
         };
     
-        return fetch(url, requestOptions)
-            .then(response => response.json())
-            .then(result => {
+        try {
+            const response = await fetch(url, requestOptions);
+            const { status, ok } = response;
+            if (status === 200 && ok) {
+                const data = await response.json();
                 return {
                     error: null,
-                    status: true
+                    status: ok
                 };
-            })
-            .catch(error => {
+            } else {
+                const data = await response.json();
                 return {
-                    error,
-                    status: false
+                    error: data.error,
+                    status: ok
                 };
-            });
+            }
+        } catch (error) {
+            return {
+                error,
+                status: false
+            };
+        }
 }
