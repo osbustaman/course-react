@@ -1,14 +1,15 @@
-import { LoginAdmin } from "../components/admin/LoginAdmin";
-import { PanelControl } from "../components/admin/PanelControl";
-import { DashBoard } from "../components/admin/pages/DashBoard";
-import { Profile } from "../components/admin/pages/Profile";
-import { Settings } from "../components/admin/pages/Settings";
-import { AddClients } from "../components/admin/pages/AddClients";
-import { LIstClients } from "../components/admin/pages/LIstClients";
+import { LoginAdmin } from "../pages/LoginAdmin";
+import { PanelControl } from "../pages/PanelControl";
+import { DashBoard } from "../pages/DashBoard";
+import { Profile } from "../pages/Profile";
+import { Settings } from "../pages/Settings";
 
-import { Login } from "../components/clients/Login";
+import { LIstClients } from "../pages/LIstClients";
+
+import { Login } from "../pages/Login";
 import  { ProtectedRoute } from "./ProtectedRoute"
-import { NotFound } from "../components/admin/NotFound";
+import { NotFound } from "../components/NotFound";
+
 
 import {
     createBrowserRouter,
